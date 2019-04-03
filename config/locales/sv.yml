@@ -146,7 +146,7 @@ sv:
   spam: 'Spam'
   trash: 'Papperskorg'
   discussion_managment: Ärendehantering'
-  open_new_discussion: 'Nytt ärdende'
+  open_new_discussion: 'Nytt ärende'
   assigned_to: "tilldelad till %{agent}"
   unassigned: 'inte tilldelad till någon'
   private: 'privat'
@@ -384,6 +384,69 @@ sv:
   team_group: "Teamgrupper"
   group_description:
 
+  # General
+  site_name: Sitenamn
+  site_url: Site-URL
+  parent_site: Förläldrasite
+  parent_company: Föräldraföretag
+  site_tagline: Site Tagline
+  enable_forums: Aktivera Community-forum
+  enable_knowledgebase: Aktivera Knowledgebase
+  enable_tickets: Aktivera Privata Ärenden
+  enable_teams: Aktivera Teams
+  enable_welcome_email: Skicka välkomstmejl till nya användare
+
+  # Design
+  header_logo: Logo i huvud
+  search_background: Bakgrundsfärg för Sök
+  top_bar: Accentfärg i huvud
+  link_color: Länkfärg
+  form_background: Backgrundsfärg i formulär
+  still_need_help:
+
+  # Locales
+  supported_locales: Supportade språk
+  default_locale: Standardspråk
+  select_default_locale: "Välj standardspråk..."
+
+  # Widget
+  show_widget: Show widget on support site
+  widget_background: Widget Background Color
+  button_color: Widget Button Color
+  button_text_color: Widget Text Color
+
+  # Integrations
+  incoming_webhook: Incoming Webhook
+  incoming_webhook_description: Create tickets from existing webforms by POSTing to a JSON webhook URL. Your secret URL is
+  enable_webhook_url: Enable Incoming Webhooks
+  google_analytics: Google Analytics
+  google_analytics_description: Send Helpdesk usage statistics into Google Analytics for reporting and visualization.
+  enable_google_analytics: Enable Google Analytics
+  google_analytics_id: Google Analytics ID
+  recaptcha_integration: Recaptcha
+  recaptcha_description: Recaptcha helps protect your self service helpdesk from spam.
+  enable_recaptcha: Enable Recaptcha
+  recaptcha_site_key: Recaptcha Site Key
+  recaptcha_api_key: Recaptcha API Key
+  cloudinary_integration: Cloudinary
+  cloudinary_description: Cloudinary offers image hosting and transformation services.
+  enable_cloudinary: Enable Cloudinary
+  cloudinary_cloud_name: Cloudinary Cloud Name
+  cloudinary_api_key: Cloudinary API Key
+  cloudinary_api_secret: Cloudinary API Secret
+
+# Email
+  mail_service: Eposttjänst för inkommmande epost
+  send_email: Aktivera Utgåend (SMTP) Epost
+  boolean_no: Nej
+  boolean_yes: Ja
+  admin_email: Admin Epost
+  from_email: Från Epost
+  smtp_mail_username: SMTP Användarnamn
+  smtp_mail_password: SMTP Lösenord
+  mail_smtp: SMTP Server
+  mail_port: SMTP Port
+  mail_domain: SMTP Domän
   activerecord:
     attributes:
       user:

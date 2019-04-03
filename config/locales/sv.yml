@@ -1,3 +1,5 @@
+# MAINTAINER: community effort
+
 sv:
   language_name: 'Svenska' # The name of the translation file, in that language
   root: &root 'Home'
@@ -18,8 +20,8 @@ sv:
   welcome_back: "Välkommen tillbaka %{username}"
   your_profile: "Din profil"
   your_tickets: "Dina ärendnen"
-  locale: "Lokalisering"
-  change_your_locale: "Byt lokalisering"
+  locale: "Språk"
+  change_your_locale: "Byt språk"
 
   # Voting widget
   did_this_help: "Löste det här ditt problem?"
@@ -60,9 +62,11 @@ sv:
   # Knowledgebase
   written_by: "Skriven av"
   last_edited: "Senast ändrad"
+  tagged: "Taggad"
+  asked_before: "Har din fråga blivit besvarad tidigare? Vi tror att dessa kan vara liknande"
 
   # Tickets
-  tickets: "Ärenden"
+  tickets: &tickets "Ärenden"
   no_tickets: "Du har inte öppnat några ärenden"
   ticket_number: "Ärendenummer"
   assigned_to_label: "Hanteras av"
@@ -70,20 +74,24 @@ sv:
 
   # Get Help
   get_help_header: "Behöver du mer hjälp?"
-  get_help_button: "Starta en konversation."
+  get_help_button: "Starta ett ärende"
 
   # Profile
   my_profile: 'Min profil'
 
+  # Locales
+  select_locale: "Byt ditt språk"
+
   # footer
-  powered_by: "Drivs av Helpy, ett infotält med öppen källkod."
+  powered_by: "Använder Helpy. En helpdesk med öppen källkod."
   get_your_copy: "Hämta din kopia på GitHub."
 
+
   # flag
-  #flag_for_review:
-  #flag_post_for_review:
-  #flag_post_placeholder:
-  #flag:
+  flag_for_review: "Flagga för översyn"
+  flag_post_for_review: "Flagga inlägg för översyn"
+  flag_post_placeholder: "Beskriv anledningen till att posten flaggas"
+  flag: "Flagga"
 
   # devise/sessions/new
   login: 'Logga in'
@@ -105,12 +113,27 @@ sv:
   # devise/registrations/new
   sign_up: 'Registrera konto'
 
+  # flash messages
+  model_created: "%{object_name} sparades"
+  model_updated: "%{object_name} uppdaterades"
+  model_destroyed: "%{object_name} raderades"
+
   # Admin menu
-  discussions: 'Konversationer'
+  inbox: Inkorg
+  discussions: 'Ärenden'
   content: 'Innehåll'
   communities: 'Samhällen'
   app_store: 'Butik'
   search: 'Sök'
+  internal_content: Internt Innehåll
+  new_ticket: Nytt Ärende
+  reports: Rapporter
+  helpcenter: "Helpcenter"
+  get_help: "Hjälp"
+  report_bug: "Rapportera en Bugg"
+  suggest_feature: "Föreslå förbättring"
+  shortcuts: "Tangentbordsgenvägar"
+  sponsors: "Sponsorer"
 
   # Admin main/statuses
   support_pipeline: 'Supportflöde'
@@ -119,18 +142,21 @@ sv:
   open: 'Öppna'
   mine: 'Mina'
   pending: 'Väntar på svar'
-  closed: 'Lösta'
+  closed: &closed 'Lösta'
   spam: 'Spam'
   trash: 'Papperskorg'
-  discussion_managment: 'Diskussionshantering'
-  open_new_discussion: 'Ny diskussion'
+  discussion_managment: Ärendehantering'
+  open_new_discussion: 'Nytt ärdende'
   assigned_to: "tilldelad till %{agent}"
   unassigned: 'inte tilldelad till någon'
   private: 'privat'
   public: 'publik'
   save_changes: 'Spara ändringar'
-  #merge: Merge
-  #merge_confirm: Are you sure you want to merge these tickets?
+  merge: Slå ihop
+  merge_confirm: Är du säker på att du vill slå ihop dessa ärenden?
+  customer_conversation: Kundkonversation
+  internal_ticket: Internt Ärende
+  unassign_agent: Koppla från Agent
 
   # Discussion controls
   change_status: 'Ändra Status'
@@ -140,55 +166,126 @@ sv:
   mark_spam: 'Markera som spam'
   mark_new: 'Markera som nyinkommet'
   assign_agent: &assign_agent 'Tilldela till agent'
-  # tag_with: &tag_with Tag Ticket
+  tag_with: &tag_with  Tagga Ärende
   selected_messages:
     one: "1 markerat meddelande"
     two: "2 markerade meddelanden"
     other: "%{count} markerade meddelanden"
+  mark_as: "Markera"
+  move_to: "Flytta"
+  users_history: "%{role}s fulla historia"
 
   # Discussion messages
+  new_message: "Detta ärende har makerats som nytt av supportpersonalen"
+  spam_message: "Detta ärende har markerats som spam av supportpersonalen"
   reopen_message: "Det här ärendet har återöppnats av supportpersonalen."
   close_message: "Det här ärendet har avslutats av supportpersonalen."
   trash_message: "Det här ärendet har raderats."
-  assigned_message: "Ärendet har tilldelats %{assigned_to}."
-  # assigned_group: "This ticket has been assigned to %{assigned_group}."
-  # converted_to_ticket: "This discussion was converted to a private ticket."
-  # converted_to_topic: "This ticket was converted to an open discussion and moved to %{forum_name}."
-  # tagged_with: "This ticket was tagged with %{tagged_with}"
-  # notes_hidden: "There are %{hidden_notes} internal notes for this ticket. You can view them by clicking anywhere in this note!"
+  assigned_message: "Ärendet har överförts till %{assigned_to}."
+  unassigned_message: "Det här "
+  assigned_group: "Ärendet har tilldelats till %{assigned_group}."
+  converted_to_ticket: "Den här diskussionen har konverterats till ett privat ärende."
+  converted_to_topic: "Detta ärende har konverterats till en öppen diskussion och flyttats till %{forum_name}."
+  tagged_with: "Ärendet har taggats med %{tagged_with}"
+  notes_hidden: "Det finns %{hidden_notes} interna anteckningar på det här ärendet. Du kan visa dem genom att klicka var som helst i denna anteckning!"
+  topic_added_from: "%{kind} tillagd från %{channel}"
 
   # User Admin
-  # users: Users
-  # account: Account
+  users: Användare
+  account: Konto
   contact_info: Kontakt
   social_info: Sociala medier
-  edit_user: Redigera användarkonto
-#  delete_user: Delete User
+  edit_user: Redigera användare
+  delete_user: Radera Användare
   work_phone: arbete
   cell_phone: mobil
-  # scrub_user: "Anonymize User"
-  # anonymize_user_warning: "Are you sure you want to anonymize %{user_name}? This will permanently anonymize the user's personal data but retain all of their tickets and public posts."
-  # delete_user_warning: "Are you sure you want to delete %{user_name}? This will permanently remove the user and all of their tickets, posts, replies and forum topics."
+  last_seen: "Senast sedd"
+  scrub_user: "Anonymisera Användare"
+  anonymize_user_warning: "Är du säker på att du vill anonymisera %{user_name}? Detta kommer att permanent anonymesera användarens personliga data men behålla alla ärenden och publika inlägg."
+  delete_user_warning: "Är du säker på att du vill radera %{user_name}? Detta kommer att permanent radera alla dess ärende, inlägg, svar and forumämnen."
+  click_to_edit: klicka för att redigera %{what}
 
   # Priorities
-  # select_priority: Select Priority
-  # vip_priority: VIP
-  # very_high_priority: Very High
-  # high_priority: High
-  # normal_priority: Normal
-  # low_priority: Low
+  select_priority: &priority Välj prioritet
+  vip_priority: VIP
+  very_high_priority: Mycket Hög
+  high_priority: Hög
+  normal_priority: Normal
+  low_priority: Låg
+
+  # Roles
+  select_role: Välj Roll
+  admin_role: Administratör
+  agent_role: Agent
+  editor_role: Redigerare
+  user_role: Kund
+  add_more_agents: "Lägg till fler användare"
+
+  # Groups
+  groups: "Grupper"
+  add_new_group: "Ny Grupp"
+  group: "Grupp"
+  tag_group: ""
+  tag_name: "Gruppnamn"
+  description: "Beskrivning"
+  color: "Färg"
+  show_on_helpcenter: "Visa i Hjälpcenter"
+  show_on_admin: "Visa i Admin"
+  email_address: "Epost Adress"
+  from_name: "Från Namn"
+
+  # Keyboard Shortcuts
+  shortcut_then: "then"
+  listing_views: "Lista vyer"
+  keyboard_shortcuts: "Tangentbordsgenvägar"
+  show_new_tickets: "Visa alla nya ärenden"
+  show_all_tickets: "Visa alla ärenden"
+  show_open_tickets: "Visa öppna ärenden"
+  show_tickets_assigned_to_you: "Visa dina ärenden"
+  show_pending_tickets_assigned_to_you: "Visa dina väntande ärenden"
+  show_closed_tickets: "Visa stängda ärenden"
+  search_for_tickets: "Sök efter ärenden"
+  viewing_tickets: "Visa ärenden"
+  select_previous_ticket: "Välj föregående ärende"
+  select_next_ticket: "Välj nästkommande ärende"
+  view_selected_ticket: "Visa valt ärende"
+  jump_to_a_specific_ticket_number: "Gå till ett specifikt ärendenummer"
+  ticket_actions: "Ärendeaktiviteter"
+  assign_the_ticket: "Tilldela ärende"
+  move_the_ticket: "Flytta ärende"
+  expand_the_ticket_thread: "Expandera ärendetråden"
+  reply_to_the_ticket: "Spara på ärendet"
+  add_an_internal_note: "Lägg till intern anteckning"
+  change_ticket_status: "Ändra ärendets status"
+  associate_with_a_group: "Koppla till en grupp"
+  ticket_status: "Ärende status"
+  mark_resolved: "Stäng Ärende"
+  reopen_ticket: "Öppna ärendet på nytt"
+  set_to_new: "Markera som nytt"
+  mark_as_spam: "Markera som spam"
+  move_to_trash: "Flytta till papperskorgen"
+  ticket_number: "ärendenummer"
 
   # User search results
   users_found:
-    one: "Det finns en användare som heter %{query}"
-    other: "%{count} användare heter %{query}"
+    one: "Det finns 1 användare som heter %{query}"
+    other: "%{count} användare hittades som heter %{query}"
+
+  # Invite users
+  invite_users: "Bjud In Nya Användare"
+  invite_emails: "Epostadresser"
+  invite_emails_placeholder: "Ange en eller flera epostadresser att skicka en inbjudan till"
+  invite_message: "Meddelande"
+  invite_message_placeholder: "Ett frivilligt meddelande som kommer att skickas till dom nya användarna"
+  invite_role: "Roll för de Inbjudna Användarna"
+  send_invite: "Skicka Inbjudan"
 
   # Discussion View
   asked_a_question: "%{user_name} ställde en fråga..."
   replied: "%{user_name} svarade..."
   posted_note: "%{user_name} postade en intern anteckning..."
-  type_reply: 'Skriv ett svar, eller skicka ett sparat'
-  select_common: 'Välj sparat svar'
+  type_reply: 'Skriv ett svar, eller skicka ett vanligt nedan'
+  select_common: 'Välj vanligt svar'
   reply: 'Svar'
   internal_note: 'Intern anteckning'
   mark_as_resolved: 'Markera som löst'
@@ -206,8 +303,8 @@ sv:
   select_category: 'Välj kategori'
   delete: 'Radera'
   view_and_edit: "Visa och redigera innehåll"
-  delete_confirm: "Är du säker på att du vill radera detta?"
-  select_icon_helptext: "Välj en ikon att koppla till den här kategorin (ej obligatoriskt)"
+  delete_confirm: "Är du säker på att du vill RADERA detta?"
+  select_icon_helptext: "Välj en ikon att koppla till den här kategorin (frivilligt)"
   translate: "Översätt till ett annat språk"
   view_on_site: "Visa på webbplatsen"
   written_on: "Skriven %{date_written}"
@@ -217,64 +314,75 @@ sv:
   published_content: "Publicerat"
   additional_settings: "Fler inställningar"
   content_status: "Innehållets status"
-  # convert_content: 'Turn post into content'
-  # upload_image: 'Upload Image'
-  # new_discussion: 'Create new discussion from this'
-  # new_discussion_post: 'Discussion #%{topic_id} was created from this one'
-  # new_discussion_topic_title: 'Split from #%{original_id}-%{original_name}'
-  # change_owner_note: 'The creator of this topic was changed from %{old} to %{new}'
+  convert_content: 'Spara som artikel eller vanligt svar'
+  upload_image: 'Ladda up bild'
+  new_discussion: 'Skapa en ny diskussion från detta'
+  new_discussion_post: 'Diskussionen #%{topic_id} skapades från denna'
+  new_discussion_topic_title: 'Utbruten från #%{original_id}-%{original_name}'
+  change_owner_note: 'Skaparen av detta ämne ändrades från %{old} till %{new}'
+
+  # Internal Content
+  no_internal_content_title: "Det finns ingen intern dokumentation skriven ännu!"
+  no_internal_content_text: "Ingen Panik ! För att bidra till den interna dokumentationen, gå till Hjälpcenter > Innehåll. Och lägg till en ny Itern typ av Kategori, dela sen med dig till teamet genom att skriva dokumentation!"
+
 
   # Communities
   new_community: 'Skapa ny grupp'
   create_new_community: 'Skapa ny grupp'
+  layout_select: Välj Format
+  layout_table: Tabell
+  layout_grid: Rutnät
+  layout_qna: F&S
 
   # Mail messages
-  new_user_subject: "Welcome to %{site_name}"
+  new_user_subject: "Välkommen till %{site_name}"
   hello: "Hej %{user_name}"
   thank_you: "Tack!"
   new_user: "Tack för att du kontaktar oss. Supportgruppen har fått ditt meddelande och återkommer inom kort med ett svar."
   account_generated: "Ett konto har skapats åt dig. För att logga in , följ den här länken:"
   above_this_line: "Skriv ditt svar ovanför den här raden:"
   message_id: "Meddelande-ID"
-  message_response: "Din fråga har besvarats:"
+  message_response: "Din fråga har besvarats med föjande:"
+  ticket_added: "Du har fått ett nytt ärende. Klicka här för att se det: %{ticket_link}"
+  response_added: "Ett svar har lagts till i ditt ärende. Klicka här för att se det: %{ticket_link}"
   view_online: "Visa på webbplatsen:"
 
+  # Admin notifications
+  notify_new_private: "Ett nytt kundärende har mottagits från %{user_name}:"
+  notify_new_public: "Ett nytt publikt kundmeddelande har postats av %{user_name}:"
+  notify_new_reply: "Ett nytt kundsvar har mottagits från %{user_name}:"
+  to_reply: 'Svara på detta meddelande direkt eller online:'
+
+  # Notifications settings panel
+  notify_on_private: "När ett nytt ärende har mottagits"
+  notify_on_public: "När en publik kundfråga har postats"
+  notify_on_reply: "När ett nytt svar på ett ärende har mottagits"
+
   # settings
+  agent_settings: "Agentinställningar"
+  notifications: "Notifieringar"
+  notifications_description:
   settings: "Inställningar"
   general: "Generellt"
+  general_description: "Hantera generella systeminställningar så som ditt Helpy namn, vilket företag att länka tillbaka till."
   design: "Design"
+  design_description: "Kontrollera logotyper, färger och andra designaspekter av din Helpy-uppsättning"
   international: "Internationellt"
   widget: "Inbäddningsbar Widget"
-  # common_replies: "Common Replies"
-  # integrations: "Integrations"
-
-  # Keyboard Shortcuts
-  # shortcut_then: "then"
-  # listing_views: "Listing views"
-  # keyboard_shortcuts: "Keyboard Shortcuts"
-  # show_new_tickets: "Show new tickets"
-  # show_all_tickets: "Show all tickets"
-  # show_open_tickets: "Show open tickets"
-  # show_tickets_assigned_to_you: "Show tickets assigned to you"
-  # show_pending_tickets_assigned_to_you: "Show pending tickets assigned to you"
-  # show_closed_tickets: "Show closed tickets"
-  # search_for_tickets: "Search for tickets"
-  # viewing_tickets: "View tickets"
-  # select_previous_ticket: "Select previous ticket"
-  # select_next_ticket: "Select next ticket"
-  # view_selected_ticket: "View selected ticket"
-  # jump_to_a_specific_ticket_number: "Jump to a specific ticket number"
-  # ticket_actions: "Ticket actions"
-  # assign_the_ticket: "Assign ticket"
-  # move_the_ticket: "Move ticket"
-  # expand_the_ticket_thread: "Expand ticket thread"
-  # reply_to_the_ticket: "Reply to the ticket"
-  # add_an_internal_note: "Add an internal note"
-  # change_ticket_status: "Change ticket status"
-  # associate_with_a_group: "Associate with a group"
-  # ticket_status: "Ticket status"
-  # mark_resolved: "Mark as resolved"
-  # reopen_ticket: "Reopen ticket"
+  common_replies: "Vanliga Svar"
+  common_replies_description:
+  integrations: "Integrationer"
+  integrations_description:
+  theme:
+  theme_description:
+  email: "Epost"
+  email_description:
+  customers: "Kunder"
+  users_description:
+  team: "Team"
+  users_description:
+  team_group: "Teamgrupper"
+  group_description:
 
   activerecord:
     attributes:

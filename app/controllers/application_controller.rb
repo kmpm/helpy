@@ -149,7 +149,8 @@ class ApplicationController < ActionController::Base
         :user_name            => AppSettings["email.smtp_mail_username"].presence,
         :password             => AppSettings["email.smtp_mail_password"].presence,
         :domain               => AppSettings["email.mail_domain"],
-        :enable_starttls_auto => !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"])
+        :enable_starttls_auto => !AppSettings["email.mail_smtp"].in?(["localhost", "127.0.0.1", "::1"]),
+        :authentication       => AppSettings["email.smtp_authentication"]
     }
 
     ActionMailer::Base.perform_deliveries = to_boolean(AppSettings['email.send_email'])
